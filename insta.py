@@ -1,9 +1,5 @@
-import json
-from pprint import pprint
-import requests
 
-# id_ = '4834571436580279'
-# photo_cnt = 2
+import requests
 
 
 def get_photo_inst(id_, photo_cnt=5):

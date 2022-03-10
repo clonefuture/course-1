@@ -1,11 +1,6 @@
 import requests
-import json
-from pprint import pprint
 import hashlib
 
-
-# photo_cnt = 5
-# id_ = '80970210435'
 
 def get_photo_ok(id_, photo_cnt=5):
     mystring = f"application_key=CHLDBDKGDIHBABABAcount={photo_cnt}fid={id_}format=jsonmethod=photos.getPhotos66df98387b0dd7bd735ce201c585d28d"
