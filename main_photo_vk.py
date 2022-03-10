@@ -13,7 +13,7 @@ def convert_date(date):
 
 
 def save_json():
-    photo_f = PhotoFromVK(token, version).get_photo(id_, album_id, photo_cnt=5)
+    photo_f = PhotoFromVK(token, version).get_photo(id_, album_id, photo_cnt)
     res_lst = []
     for i in photo_f:
         res_dict = {
@@ -68,6 +68,8 @@ class ToYaDisk:
     def upload(self, path_files):
         upload_url = 'https://cloud-api.yandex.net/v1/disk/resources/upload'
 
+        '''Загрузка файлов из VK'''
+
         if name == 'v':
             f = PhotoFromVK(token, version).get_photo(id_, album_id, photo_cnt)
             for urls in tqdm(f):
@@ -81,6 +83,8 @@ class ToYaDisk:
                 response = requests.post(upload_url, headers=headers, params=params)
             save_json()
 
+            '''Загрузка файлов из Одноклассники'''
+
         elif name == 'o':
             f = get_photo_ok(id_, photo_cnt)
             for urls in tqdm(f):
@@ -92,6 +96,8 @@ class ToYaDisk:
                 }
                 params = {'path': path_files+str(urls['file_name']), 'url': url}
                 response = requests.post(upload_url, headers=headers, params=params)
+
+                '''Загрузка файлов из Instagram'''
 
         elif name == 'i':
             f = get_photo_inst(id_, photo_cnt)
